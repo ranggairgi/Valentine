@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Valentine 🍫</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: linear-gradient(to right, #ff9a9e, #fad0c4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      color: white;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .card {
+      position: relative;
+      z-index: 10;
+      background: rgba(255,255,255,0.2);
+      padding: 25px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    h1 {
+      font-size: 22px;
+    }
+
+    p {
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      background: white;
+      color: #ff4b5c;
+      font-weight: bold;
+      width: 100%;
+      max-width: 200px;
+    }
+
+    /* Animasi jatuh */
+    .fall {
+      position: fixed;
+      top: -50px;
+      animation: turun linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes turun {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(100vh); opacity: 0; }
+    }
+
+    /* Khusus layar kecil */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 20px;
+      }
+      p {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <h1>Happy Valentine 💖</h1>
+  <p>
+    haiii<br><br>
+    hari ini kan hari valentine, identik sama coklat sama manis<br>
+    semoga hari kamu manis kayak coklat 🍫<br><br>
+    btw judul lagunya best part hehee 🎵
+  </p>
+
+  <button onclick="playMusic()">Klik dulu dong 🎵</button>
+
+  <audio id="lagu">
+    <source src="lagu.mp3" type="audio/mpeg">
+  </audio>
+</div>
+
+<script>
+  function playMusic() {
+    document.getElementById("lagu").play();
+  }
+
+  function buatAnimasi() {
+    const simbol = ["💖","❤️","🍫","🤍"];
+    const item = document.createElement("div");
+    item.classList.add("fall");
+    item.innerHTML = simbol[Math.floor(Math.random() * simbol.length)];
+
+    item.style.left = Math.random() * 100 + "vw";
+    item.style.fontSize = (20 + Math.random() * 20) + "px";
+    item.style.animationDuration = (4 + Math.random() * 6) + "s";
+
+    document.body.appendChild(item);
+
+    setTimeout(() => {
+      item.remove();
+    }, 10000);
+  }
+
+  setInterval(buatAnimasi, 500);
+</script>
+
+</body>
+</html>
